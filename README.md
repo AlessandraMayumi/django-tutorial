@@ -1,3 +1,5 @@
+https://docs.djangoproject.com/en/5.1/intro/tutorial02/
+
 ```sh
 python manage.py shell
 >>> from polls.models import Choice, Question
