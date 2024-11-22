@@ -104,6 +104,18 @@ class QuestionIndexViewTests(TestCase):
             [question2, question1],
         )
 
+    def test_post_for_something_ajax(self):
+        payload = {'payload': 'testuser'}
+        response = self.client.post(reverse('some_ajax'), data=payload)
+        response_data = response.json()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('msg', response_data)
+        self.assertEqual(
+            response_data['msg'],
+            'Hello, world. Ajax response for username input [testuser]'
+        )
+
 
 class QuestionDetailViewTests(TestCase):
     def test_future_question(self):

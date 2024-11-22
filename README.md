@@ -11,3 +11,6 @@ python manage.py shell
 <Choice: Choice object (2)>
 >>> c = q.choice_set.create(choice_text="Just hacking again", votes=0)
 ```
+
+https://docs.djangoproject.com/en/5.1/howto/csrf/#using-csrf
+https://github.com/testdrivenio/django-ajax-xhr/blob/jquery/todos/views.py
