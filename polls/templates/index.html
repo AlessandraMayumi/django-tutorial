@@ -1,9 +1,6 @@
-{% load static %}
-{% csrf_token %}
+{% extends "_base.html" %}
 
-<link rel="stylesheet" href="{% static 'style.css' %}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
+{% block content %}
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
@@ -22,27 +19,4 @@
     <input type="text" id="username_input" name="username_txt" />
     <button type="button" id="username_button">Click</button>
 </form>
-
-{% block javascript %}
-    <script>
-        $('#username_button').on('click', function (e) {
-            e.preventDefault(); // Prevent the default form submission behavior
-            var value = $('#username_input').val(); // Get the username value from the input
-            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-            $.ajax({
-                url: 'username/',
-                type: "POST",
-                dataType: "json",
-                data: {payload: value},
-                headers: {"X-CSRFToken": csrftoken},
-                mode: 'same-origin',
-                success: (data) => {
-                    $('#response_msg').text(data.msg); // Display response message in the paragraph
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
-        });
-    </script>  
-{% endblock %}
+{% endblock content %}
